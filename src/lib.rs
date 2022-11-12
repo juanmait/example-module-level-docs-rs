@@ -8,7 +8,10 @@ For more info see:
 in the [rustdoc book](https://doc.rust-lang.org/stable/rustdoc/).
 */
 
+pub mod dynamically_sized_types;
+pub mod error_handling;
+pub mod misc;
 pub mod static_dispatch;
 pub mod trait_as_ref;
-pub mod dynamically_sized_types;
 pub mod trait_objects;
+pub mod vec_deque;

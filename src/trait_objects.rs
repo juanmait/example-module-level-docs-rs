@@ -154,7 +154,7 @@ say_hi_to_all(&["J", "Juan".to_string()]);
 You can read more about it in the rust book's chapter about
 [Using Trait Objects That Allow for Values of Different Types](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types)
 
-The scenario mentions a GUI library that can has a bunch of UI components that implements the `Drawable` trait.
+The scenario mentions a GUI library that has a bunch of UI components and all of them implements the `Drawable` trait.
 
 The Library could have a `draw` function that takes an iterator of things that implements the `Drawable` trait like
 Buttons, Images, Text Boxes, etc..
@@ -244,8 +244,8 @@ say_hi_to_all_sized(&[&"J", &"Juan".to_string()]);
 say_hi_to_all_boxed(&[Box::new("J"), Box::new("Juan".to_string())]);
 // => "Hi J!"
 // => "Hi Juan!"
-
 ```
+Continue with dynamic dispatch or v-tables.. <https://youtu.be/xcygqF5LVmM?t=2906>
 */
 
 #[cfg(test)]

@@ -1,0 +1,1 @@
+rustdoc src/lib.rs --crate-name RustDocs && open doc/RustDocs/index.html && cargo watch -s 'rustdoc src/lib.rs --crate-name RustDocs && rustdoc --test src/lib.rs'

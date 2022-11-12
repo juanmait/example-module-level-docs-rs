@@ -1,6 +1,10 @@
 /*!
 # Dynamically Sized Types
 
+- [https://doc.rust-lang.org/reference/dynamically-sized-types.html](https://doc.rust-lang.org/reference/dynamically-sized-types.html)
+- [https://doc.rust-lang.org/book/ch19-04-advanced-types.html?highlight=unsized#dynamically-sized-types-and-the-sized-trait](https://doc.rust-lang.org/book/ch19-04-advanced-types.html?highlight=unsized#dynamically-sized-types-and-the-sized-trait)
+- [https://poignardazur.github.io/2022/02/23/rust-unsized-vars-analysis/](https://poignardazur.github.io/2022/02/23/rust-unsized-vars-analysis/)
+
 Most types have a fixed size that is known at compile time and implement the trait [Sized].
 Types whose size can only be known at runtime are called _dynamically sized type_ (DST).
 
