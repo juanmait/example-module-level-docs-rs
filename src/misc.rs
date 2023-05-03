@@ -1,21 +1,19 @@
 /*!
-# Const Vs Static
+# Closures
 
-`const` can be used in `match` statements but `static` cannot.
+## Writing the type of a closure
 
 ```
-const CONST_1: &str = "This is CONST 1!!!";
-const CONST_2: &str = "This is CONST 2!!!";
+fn make_it() -> impl Fn(u8) -> u8 {
+   |a| a + 1
+}
+
+fn call_it(f: impl Fn(u8) -> u8) {
+    println!("The result is {}", f(42))
+}
 
 fn main() {
-    let value = "This is CONST 2!!!".to_string();
-
-    match value.as_ref() {
-        CONST_1 | CONST_2 => {
-            println!("{}", value);
-        }
-        _ => panic!("no such case"),
-    }
+    call_it(make_it());
 }
 ```
 */
@@ -23,18 +21,6 @@ fn main() {
 #[cfg(test)]
 mod tests {
 
-    const CONST_1: &str = "This is CONST 1!!!";
-    const CONST_2: &str = "This is CONST 2!!!";
-
     #[test]
-    fn string_to_path_ref() {
-        let value = "This is CONST 2!!!".to_string();
-
-        match value.as_ref() {
-            CONST_1 | CONST_2 => {
-                println!("{}", value);
-            }
-            _ => panic!("no such case"),
-        }
-    }
+    fn works() {}
 }
