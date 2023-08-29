@@ -1,13 +1,13 @@
 /*!
 # Trait Objects
 
-[Static Dispatch]: ../static_dispatch/index.html.
-
 First read about [Static Dispatch].
 
 There are cases in which [static dispatch][Static Dispatch] is not enough.
 Going back to the `Hi` trait the we've implemented in the [static dispatch guide][Static Dispatch]
 for [`&str`][str] and [`String`][String]:
+
+[Static Dispatch]: ../static_dispatch/index.html
 
 ```
 pub trait Hi {
