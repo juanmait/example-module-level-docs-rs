@@ -19,10 +19,9 @@ pub mod my_module;
 And that is it.
 */
 
-pub mod about_collections;
 pub mod const_vs_static;
 pub mod dynamically_sized_types;
-pub mod misc;
+pub mod closures;
 pub mod static_dispatch;
 pub mod trait_as_ref;
 pub mod trait_objects;

@@ -14,11 +14,12 @@ Examples of _DST_ types are:
 (the slice data structure just stores the starting position and the length of the slice)
 - [Trait Objects](https://doc.rust-lang.org/reference/types/trait-object.html) (Every trait is a dynamically sized type).
 
-Rust needs to know how much memory to allocate for any value of a particular type,
-and all values of a type must use the same amount of memory.
+Rust needs to know how much memory to allocate for any value of a particular type.
+All values of that type will allocate the same amount of memory.
 
 The [str] type is a DST (not `&str` but `str`) cause it's a _string slice_. [str] can't
 be used "as is". His size is not known at compile time. That's why we use `&str` instead.
+
 The `&str` has two values: the memory address of the [str] and its length.
 As such, we can know the size of a `&str` at compile time (it’s twice the length of a `usize`)
 no matter how long the string it refers to is.
