@@ -56,7 +56,24 @@ let path_from_path: &Path = create_path_ref(&path_from_string);
 // => "hello/world.rs"
 ```
 
-so far so good
+### Example usage in a struct
+
+Here the struct Message is generic over anything that implements `AsRef<str>`.
+
+```
+struct Message<T: AsRef<str>> {
+    id: T,
+}
+
+let message_str = Message { id: "some str" };
+
+let message_string = Message {
+    id: String::from("Some str"),
+};
+
+dbg!(message_str.id);
+dbg!(message_string.id);
+```
 */
 
 #[cfg(test)]
@@ -84,5 +101,21 @@ mod tests {
 
         let path_from_path: &Path = create_path_ref(&path_from_string);
         dbg!(path_from_path);
+    }
+
+    #[test]
+    fn as_ref_in_struct() {
+        struct Message<T: AsRef<str>> {
+            id: T,
+        }
+
+        let message_str = Message { id: "&str" };
+
+        let message_string = Message {
+            id: String::from("String"),
+        };
+
+        dbg!(message_str.id);
+        dbg!(message_string.id);
     }
 }

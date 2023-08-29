@@ -1,21 +1,29 @@
 /*!
 # Static Dispatch (monomorphization)
 
-The _static dispatch_ is part of the rust
+__Static dispatch__ is part of the rust
 [_monomorphization_](https://rustc-dev-guide.rust-lang.org/backend/monomorph.html) process.
 in which the rust complier generates code.
 
-Is the process of _statically dispatch_ the necessary variations of code to represent for example
-different method signatures for different types that implement the same trait.
+Is the process of statically (at compile time) dispatch (generate) the necessary variations of code to
+represent for example the different versions of a method that is shared across types that implement the
+same trait.
 
-The difference with _dynamic dispatch_ is that _static dispatch_ happens when the compiler
-knows all the possible variations of code that has to generate at compile time.
+In that context, one could said that is the conversion of _generic_ code into _concrete_ code.
+
+The more important outcome of that code generation is that later at runtime our binary will know
+exactly where those methods live in memory and will have no trouble finding them and calling them
+with their expected parameter types.
+
+__Static dispatch__ can only happen when the compiler knows all the possible variations of code that has to
+generate at compile time.
 
 ## Example
 Let's say that we have a trait that can say _Hi_ to any type that implements it.
 
 ```
 pub trait Hi {
+    /// types that implements `Hi` can say "hi" to themselves
     fn hi(&self);
 }
 ```
@@ -63,7 +71,7 @@ Now we can use the `hi` method in both [`&str`][str] and [`String`][String]:
 "String".to_string().hi(); // "Hi String!"
 ```
 
-But we could also have a generic function that accepts anything that implements the trait `Hi` and call the `hi` method:
+And now we can have a _generic_ function that accepts anything that implements the trait `Hi` and call the `hi` method:
 
 ```
 # pub trait Hi {
@@ -85,15 +93,15 @@ But we could also have a generic function that accepts anything that implements 
 fn say_hi(name: impl Hi) {
     name.hi();
 }
+
 say_hi("Str");
 say_hi("String".to_string());
 ```
 
-In this situation, when the compiler needs to generate the machine code for this it needs to
-some how call the `hi` method but it doesn't actually know the type of the param `name`.
-So in reality what will be end up generating is that the complier generates two versions
-of the function `say_hi` like this:
-
+In reality, since Rust needs to know the size of the param `name`, and `name` is a trait object,
+and trait objects have no size, Rust will instead find all the types that implements `Hi`
+which do have size (in this case `String` and `&str`) and generate one version of the function for
+every one of them like this:
 ```
 # pub trait Hi {
 #    fn hi(&self);
@@ -111,14 +119,18 @@ of the function `say_hi` like this:
 #     }
 # }
 #
+// hi for `&str`
 fn say_hi_str_ref(name: &str) {
     name.hi();
 }
+
+// hi for `String`
 fn say_hi_string(name: String) {
     name.hi();
 }
 ```
-So now the compiler knows what are the concrete types on which have to call the `hi` method.
+
+So now once at runtime the final binary doesn't have to do any guess work to know what to call with which type.
 */
 
 #[cfg(test)]
