@@ -5,21 +5,19 @@ __Static dispatch__ is part of the rust
 [_monomorphization_](https://rustc-dev-guide.rust-lang.org/backend/monomorph.html) process.
 in which the rust complier generates code.
 
-Is the process of statically (at compile time) dispatch (generate) the necessary variations of code to
-represent for example the different versions of a method that is shared across types that implement the
-same trait.
+Is the process of statically (at compile time) dispatch (generate) the necessary
+variations of code to represent for example the different versions of a method that
+is shared across types that implement the same trait.
 
-In that context, one could said that is the conversion of _generic_ code into _concrete_ code.
+In that context, one could said that is the conversion of _generic_ code into
+_concrete_ code.
 
-The more important outcome of that code generation is that later at runtime our binary will know
-exactly where those methods live in memory and will have no trouble finding them and calling them
-with their expected parameter types.
-
-__Static dispatch__ can only happen when the compiler knows all the possible variations of code that has to
-generate at compile time.
+__Static dispatch__ can only happen when the compiler knows all the possible
+variations of code that it has to generate at compile time.
 
 ## Example
-Let's say that we have a trait that can say _Hi_ to any type that implements it.
+Let's say that we have a trait `Hi`. Any type that implements Hi receives the
+ability to speak is name:
 
 ```
 pub trait Hi {

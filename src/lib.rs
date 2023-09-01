@@ -9,12 +9,9 @@ in the [rustdoc book](https://doc.rust-lang.org/stable/rustdoc/).
 
 ## How to create a new document
 
-Documents are rust modules. Create a file with the preferred name and make it public in the `lib.rs` file
-by introducing this line:
+> Documents are just rust modules. 
 
-```ignore
-pub mod my_module;
-```
+Create a new snake_case file in `src/`. Add `pub mod my_module;` in `lib.rs`
 
 And that is it.
 */
@@ -24,5 +21,7 @@ pub mod dynamically_sized_types;
 pub mod closures;
 pub mod static_dispatch;
 pub mod trait_as_ref;
-pub mod trait_objects;
 pub mod trait_bounds;
+pub mod trait_objects;
+pub mod trait_partial_ord;
+pub mod trait_ord;
