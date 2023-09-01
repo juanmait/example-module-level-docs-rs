@@ -25,3 +25,4 @@ pub mod closures;
 pub mod static_dispatch;
 pub mod trait_as_ref;
 pub mod trait_objects;
+pub mod trait_bounds;
