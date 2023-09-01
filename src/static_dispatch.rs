@@ -28,7 +28,7 @@ pub trait Hi {
 }
 ```
 
-We implement the trait `Hi` for [`&str`][str] and [`String`][String]:
+If we implement `Hi` for the types [`&str`][str] and [`String`][String]:
 
 ```
 # pub trait Hi {
@@ -48,7 +48,7 @@ impl Hi for String {
 }
 ```
 
-Now we can use the `hi` method in both [`&str`][str] and [`String`][String]:
+then we can use `hi` on both [`&str`][str] & [`String`][String]:
 
 ```
 # pub trait Hi {
@@ -71,7 +71,7 @@ Now we can use the `hi` method in both [`&str`][str] and [`String`][String]:
 "String".to_string().hi(); // "Hi String!"
 ```
 
-And now we can have a _generic_ function that accepts anything that implements the trait `Hi` and call the `hi` method:
+We could have some `fn` that accepts `Hi` through `&str` and `String`:
 
 ```
 # pub trait Hi {
@@ -90,6 +90,7 @@ And now we can have a _generic_ function that accepts anything that implements t
 #     }
 # }
 #
+/// I'm fine with anything that implements `Hi`
 fn say_hi(name: impl Hi) {
     name.hi();
 }
@@ -98,9 +99,9 @@ say_hi("Str");
 say_hi("String".to_string());
 ```
 
-In reality, since Rust needs to know the size of the param `name`, and `name` is a trait object,
+In reality, since Rust needs to know the size of the param `name`, and `name` is a trait object (`name: impl Hi`),
 and trait objects have no size, Rust will instead find all the types that implements `Hi`
-which do have size (in this case `String` and `&str`) and generate one version of the function for
+which do have size (in this case `String` and `&str`) and generate one version of the `say_hi` function for
 every one of them like this:
 ```
 # pub trait Hi {
@@ -119,18 +120,19 @@ every one of them like this:
 #     }
 # }
 #
-// hi for `&str`
+// say hi to <&str>
 fn say_hi_str_ref(name: &str) {
     name.hi();
 }
 
-// hi for `String`
+// say hi to <String>
 fn say_hi_string(name: String) {
     name.hi();
 }
 ```
 
-So now once at runtime the final binary doesn't have to do any guess work to know what to call with which type.
+So then, once at runtime, the final binary doesn't have to do any guess work to
+figure out what do you mean when you pass `Hi` to a function.
 */
 
 #[cfg(test)]

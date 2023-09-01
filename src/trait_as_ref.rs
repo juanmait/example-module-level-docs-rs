@@ -1,10 +1,9 @@
 /*!
 # The [AsRef] trait
 
-Check the [AsRef] trait in the rust docs.
+- Used to do cheap reference-to-reference conversion.
 
-- Used to do a cheap reference-to-reference conversion.
-- By using trait bounds we can accept arguments of different types as long as they can be converted to the specified type `T`.
+Check the [AsRef] trait in the rust docs.
 
 ## Examples
 
