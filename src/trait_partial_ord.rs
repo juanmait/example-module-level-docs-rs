@@ -13,8 +13,8 @@ Properties:
 -   Transitive
 -   Antisymmetric
 
--   See: https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html
--   See: https://en.wikipedia.org/wiki/Partially_ordered_set
+-   See: <https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html>
+-   See: <https://en.wikipedia.org/wiki/Partially_ordered_set>
 
 [partial order]: https://en.wikipedia.org/wiki/Partially_ordered_set
  */

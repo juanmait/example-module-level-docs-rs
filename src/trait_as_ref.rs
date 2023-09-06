@@ -34,25 +34,24 @@ Here `AsRef<Path>` means: **accept any type that can be turn into a reference of
 ```
 use std::path::Path;
 
-fn create_path_ref<'a, T: AsRef<Path> + 'a>(path: &'a T) -> &'a Path {
-    let path: &Path = path.as_ref();
-    path
+fn create_path_ref<T: AsRef<Path> + >(path: &T) -> &Path {
+    path.as_ref()
 }
 
-let str_ref: &str = "hello/world.rs";
-// => "hello/world.rs"
+let str_ref = "hello/world.rs";
+// => <&str> "hello/world.rs"
 
-let string_from_str_ref: String = String::from(str_ref);
-// => "hello/world.rs"
+let string_from_str_ref = String::from(str_ref);
+// => <String> "hello/world.rs"
 
-let path_from_str_ref: &Path = create_path_ref(&str_ref);
-// => "hello/world.rs"
+let path_from_str_ref = create_path_ref(&str_ref);
+// => <&Path> "hello/world.rs"
 
-let path_from_string: &Path = create_path_ref(&string_from_str_ref);
-// => "hello/world.rs"
+let path_from_string = create_path_ref(&string_from_str_ref);
+// => <&Path> "hello/world.rs"
 
-let path_from_path: &Path = create_path_ref(&path_from_string);
-// => "hello/world.rs"
+let path_from_path = create_path_ref(&path_from_string);
+// => <&Path> "hello/world.rs"
 ```
 
 ### Example usage in a struct
@@ -86,19 +85,19 @@ mod tests {
 
     #[test]
     fn string_to_path_ref() {
-        let str_ref: &str = "hello/world.rs";
+        let str_ref = "hello/world.rs";
         dbg!(str_ref);
 
-        let string_from_str_ref: String = String::from(str_ref);
+        let string_from_str_ref = String::from(str_ref);
         dbg!(string_from_str_ref.clone());
 
-        let path_from_str_ref: &Path = create_path_ref(&str_ref);
+        let path_from_str_ref = create_path_ref(&str_ref);
         dbg!(path_from_str_ref);
 
-        let path_from_string: &Path = create_path_ref(&string_from_str_ref);
+        let path_from_string = create_path_ref(&string_from_str_ref);
         dbg!(path_from_string);
 
-        let path_from_path: &Path = create_path_ref(&path_from_string);
+        let path_from_path = create_path_ref(&path_from_string);
         dbg!(path_from_path);
     }
 
