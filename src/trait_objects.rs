@@ -26,7 +26,7 @@ impl Hi for String {
     }
 }
 ```
-Let's say we have a vector of `&str` and we want to call the `hi` method on each of them:
+Let's say we have a vector of  [`&str`][str] and we want to call the `hi` method on each of them:
 
 ```
 # pub trait Hi {
