@@ -1,4 +1,4 @@
-# Rust docs
+# Example of a Module Level Rust Documentation
 
 This is an example that showcase the generation of module level documentation. It can be useful to
 write (and generate) general rust documentation like guides, tutorials, notes, etc in which the code
